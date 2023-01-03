@@ -1,0 +1,20 @@
+|<3| rozszerzenie .cute
+
+metodka fib(bezprzecinek n) -> bezprzecinek {
+	bezprzecinek -> a <- 0 |<3|
+	bezprzecinek -> b <- 1 |<3|
+	waruneczek (n kropkawkropke 1) {
+		zwrocik 0 |<3|
+	}
+	waruneczek (n kropkawkropke 2) {
+		zwrocik 1 |<3|
+	}
+	bezprzecinek -> i <- 2 |<3|
+	powielanko (i mniejszy n) {
+		bezprzecinek -> sumka <- a + b |<3|
+		a <- b |<3|
+		b <- sumka |<3|
+		i <- i + 1 |<3|
+	}
+	zwrocik b |<3|
+}
