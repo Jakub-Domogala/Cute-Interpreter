@@ -27,8 +27,8 @@ while_stat                  : While Open_Parenthesis expr Close_Parenthesis (Ope
 
 // All expressions
 expr                        : expr Operator_sign expr
-                            | (Minus)? expr
-                            | (Not)? expr
+                            | (Minus)+ expr
+                            | (Not)+ expr
                             | Open_Parenthesis expr Close_Parenthesis
                             | term;
 
@@ -116,9 +116,10 @@ White_Sign                  :
 
 Int                         : ('-')?[0-9][0-9]* ;
 
-Double                      : ('-')?[1-9][0-9]*'.'[0-9]* 
-                            | ('-')?'0.'[0-9]*
-                            ;
+Double                         : '0';
+// Double                      : ('-')?[1-9][0-9]*'.'[0-9]* 
+//                             | ('-')?'0.'[0-9]*
+//                             ;
 
 Number                      : 
                             Int 
