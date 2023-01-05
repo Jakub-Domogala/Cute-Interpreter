@@ -126,8 +126,8 @@ Number                      :
                             ;
 
 Bool                        : 
-                            False 
-                          | True
+                            'False'
+                          | 'True'
                             ;
 
 NAME                        : [a-z]+ ;
