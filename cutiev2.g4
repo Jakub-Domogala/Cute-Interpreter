@@ -4,7 +4,7 @@ grammar cutie;
  * Parser Rules
  */
 
-program                     : (stat)+
+program                     : (stat)+;
 
 
 // All Statements
