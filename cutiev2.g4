@@ -70,7 +70,7 @@ fragment Greater            : 'wiekszy';
 Operator_sign_comparison    : Lesser | Greater | Operator_sign_equality;
 
 fragment Plus               : '+';
-fragment Minus              : '-';
+Minus                       : '-';
 fragment Multiplication     : '*';
 fragment Division           : '/';
 Operator_sign_numerical     : Plus | Minus | Multiplication | Division;
