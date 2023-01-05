@@ -89,13 +89,13 @@ fragment Plus           : '+';
 fragment Minus          : '-';
 fragment Multiplication : '*';
 fragment Division       : '/';
-Operator_sign           : Plus | Minus | Multiplication | Division;
+Operator_sign_numerical : Plus | Minus | Multiplication | Division;
 
 
 
 fragment And            : 'oraz';
 fragment Or             : 'lub';
-LogicSign               : And | Or;
+Operator_sign_boolean   : And | Or;
 
 If                      : 'waruneczek';
 
@@ -130,6 +130,6 @@ Bool
 
 NAME: [a-z]+;
 
-rightArr : '->'; // defType
+var_assing : '->'; // defType
 
-leftArr  : '<-'; // asignVal
+val_assign  : '<-'; // asignVal
