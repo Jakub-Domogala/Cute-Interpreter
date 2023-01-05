@@ -1,3 +1,11 @@
+// TODO
+// We forgot about the fact that in any kind of calculations we can use variable
+// names and not only given values so we have to remake like everything xdddd
+// it's going great
+// lot of work to do 
+
+
+
 grammar cutie;
 
 /*
@@ -18,9 +26,19 @@ operation                   :
                           | operation_boolean
                             ;
 
-operation_boolean           : Bool (Operator_sign_boolean Bool)
+operation_boolean           : (Not)? Bool
+                            | (Not)? Open_Parenthesis operation_boolean Close_Parenthesis
+                            | (Not)? comparison_expresion
+                            | operation_boolean Operator_sign_boolean operation_boolean
+                            ;
 
-operation_integer           : Int (Operator_sign_numerical Int)* ;
+comparison_expresion        : operation_integer Operator_sign_comparison operation_integer
+                            | operation_double Operator_sign_comparison operation_double
+                            | operation_boolean Operator_sign_equality operation_boolean
+                            ;
+
+// operation_integer           : Int (Operator_sign_numerical Int)* ;
+operation_integer           : (Minus)* Int
 
 operation_double            : Double (Operator_sign_numerical Double)* ;
 
@@ -45,10 +63,13 @@ Semicolon                   : '|<3|';
 
 
 
+fragment Equals             : 'kropkawkropke';
+fragment UnEquals           : 'innyod';
+Operator_sign_equality      : Equals | UnEquals;
+
 fragment Lesser             : 'mniejszy';
 fragment Greater            : 'wiekszy';
-fragment Equals             : 'kropkawkropke';
-ComparationToken            : Lesser | Greater | Equals;
+Operator_sign_comparison    : Lesser | Greater | Operator_sign_equality;
 
 
 fragment Plus               : '+';
@@ -62,6 +83,8 @@ Operator_sign_numerical     : Plus | Minus | Multiplication | Division;
 fragment And                : 'oraz';
 fragment Or                 : 'lub';
 Operator_sign_boolean       : And | Or;
+
+Not                         : 'nie';
 
 var_assing                  : '->'; // defType
 
