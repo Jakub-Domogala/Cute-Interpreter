@@ -9,14 +9,18 @@ block                     : (stat)+;
 // All Statements
 stat                        : define_stat
                             | assign_stat
+                            | print_stat
                             | if_stat
                             | while_stat;
 
 // Create new Variable statement
-define_stat                 : Type var_define identifier (val_assign expr)? Semicolon;
+define_stat                 : type Var_define Identifier (Val_assign expr)? Semicolon;
 
 // Assign value to Variable
-assign_stat                 : identifier val_assign expr Semicolon;
+assign_stat                 : Identifier Val_assign expr Semicolon;
+
+// Print variable or sth
+print_stat                  : Print Open_Parenthesis term Close_Parenthesis;
 
 // If statement
 if_stat                     : If Open_Parenthesis expr Close_Parenthesis (Open_Bracket (stat)+ Close_Bracket | stat);
@@ -25,14 +29,17 @@ if_stat                     : If Open_Parenthesis expr Close_Parenthesis (Open_B
 while_stat                  : While Open_Parenthesis expr Close_Parenthesis (Open_Bracket (stat)+ Close_Bracket | stat);
 
 // All expressions
+// expr                        : expr operator_sign expr
+//                             | (Minus)+ expr
+//                             | (Not)+ expr
+//                             | Open_Parenthesis expr Close_Parenthesis
+//                             | term;
 expr                        : expr Operator_sign expr
-                            | (Minus)+ expr
-                            | (Not)+ expr
                             | Open_Parenthesis expr Close_Parenthesis
                             | term;
 
-// All terms ( identifiers and types )
-term                        : identifier
+// All terms ( identifiers and s )
+term                        : Identifier
                             | Int
                             | Double
                             | Bool;
@@ -40,7 +47,7 @@ term                        : identifier
 // atom                        : id | Int | Double | Bool;
 
 // identifier
-identifier                  : NAME;
+Identifier                  : NAME;
 
 
 /*
@@ -85,9 +92,11 @@ Operator_sign               : Operator_sign_boolean
 
 Not                         : 'nie';
 
-var_define                  : '->'; // defType
+Var_define                  : '->'; // def
 
-val_assign                  : '<-'; // asignVal
+Val_assign                  : '<-'; // asignVal
+
+Print                       : 'drukareczka';
 
 If                          : 'waruneczek';
 
@@ -96,14 +105,24 @@ While                       : 'powielanko';
 Return                      : 'zwrocik';
 
 
-Def                         : 'metodka';
+// Def                         : 'metodka';
 
-Type
-                            : 
-                            'bezprzecinek' 
+
+// Int_name                  : 'bezprzecinek' ;
+// Double_name               : 'zprzecinek' ;
+// Bool_name                 : 'zerojedynek' ;
+// String_name               : 'napisik' ;
+
+// type                      : (
+//                            Int_name
+//                           | Double_name
+//                           | Bool_name
+//                           | String_name );
+
+type                      : ('bezprzecinek' 
                           | 'zerojedynek' 
                           | 'napisik' 
-                          | 'zprzecinek';
+                          | 'zprzecinek');
 
 White_Sign                  : 
                           ( ' ' 
