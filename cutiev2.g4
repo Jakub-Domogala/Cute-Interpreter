@@ -14,10 +14,10 @@ stat                        : define_stat
                             | while_stat;
 
 // Create new Variable statement
-define_stat                 : type Var_define Identifier (Val_assign expr)? Semicolon;
+define_stat                 : TYPE Var_define NAME (Val_assign expr)? Semicolon;
 
 // Assign value to Variable
-assign_stat                 : Identifier Val_assign expr Semicolon;
+assign_stat                 : NAME Val_assign expr Semicolon;
 
 // Print variable or sth
 print_stat                  : Print Open_Parenthesis term Close_Parenthesis;
@@ -39,16 +39,12 @@ expr                        : expr Operator_sign expr
                             | term;
 
 // All terms ( identifiers and s )
-term                        : Identifier
+term                        : NAME
                             | Int
                             | Double
                             | Bool;
 
 // atom                        : id | Int | Double | Bool;
-
-// identifier
-Identifier                  : NAME;
-
 
 /*
  * Lexer Rules
@@ -104,26 +100,10 @@ While                       : 'powielanko';
 
 Return                      : 'zwrocik';
 
-
-// Def                         : 'metodka';
-
-
-// Int_name                  : 'bezprzecinek' ;
-// Double_name               : 'zprzecinek' ;
-// Bool_name                 : 'zerojedynek' ;
-// String_name               : 'napisik' ;
-
-// type                      : (
-//                            Int_name
-//                           | Double_name
-//                           | Bool_name
-//                           | String_name );
-
-type                      : ('bezprzecinek' 
-                          | 'zerojedynek' 
-                          | 'napisik' 
-                          | 'zprzecinek');
-
+TYPE                      : 'bezprzecinek'
+                          | 'zerojedynek'
+                          | 'napisik'
+                          | 'zprzecinek';
 White_Sign                  : 
                           ( ' ' 
                           | '\n' 
@@ -134,10 +114,7 @@ White_Sign                  :
 
 Int                         : ('-')?[0-9][0-9]* ;
 
-Double                         : '0';
-// Double                      : ('-')?[1-9][0-9]*'.'[0-9]* 
-//                             | ('-')?'0.'[0-9]*
-//                             ;
+Double                      : '0';
 
 Number                      : 
                             Int 
