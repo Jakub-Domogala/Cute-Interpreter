@@ -71,12 +71,30 @@ class cutiev2Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by cutiev2Parser#expr.
-    def enterExpr(self, ctx:cutiev2Parser.ExprContext):
+    # Enter a parse tree produced by cutiev2Parser#operat.
+    def enterOperat(self, ctx:cutiev2Parser.OperatContext):
         pass
 
-    # Exit a parse tree produced by cutiev2Parser#expr.
-    def exitExpr(self, ctx:cutiev2Parser.ExprContext):
+    # Exit a parse tree produced by cutiev2Parser#operat.
+    def exitOperat(self, ctx:cutiev2Parser.OperatContext):
+        pass
+
+
+    # Enter a parse tree produced by cutiev2Parser#parentise.
+    def enterParentise(self, ctx:cutiev2Parser.ParentiseContext):
+        pass
+
+    # Exit a parse tree produced by cutiev2Parser#parentise.
+    def exitParentise(self, ctx:cutiev2Parser.ParentiseContext):
+        pass
+
+
+    # Enter a parse tree produced by cutiev2Parser#terminal.
+    def enterTerminal(self, ctx:cutiev2Parser.TerminalContext):
+        pass
+
+    # Exit a parse tree produced by cutiev2Parser#terminal.
+    def exitTerminal(self, ctx:cutiev2Parser.TerminalContext):
         pass
 
 

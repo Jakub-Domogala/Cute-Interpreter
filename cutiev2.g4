@@ -34,9 +34,10 @@ while_stat                  : While Open_Parenthesis expr Close_Parenthesis (Ope
 //                             | (Not)+ expr
 //                             | Open_Parenthesis expr Close_Parenthesis
 //                             | term;
-expr                        : left=expr Operator_sign right=expr
-                            | Open_Parenthesis mid=expr Close_Parenthesis
-                            | term;
+expr                        : left=expr Operator_sign right=expr            # operat
+                            | Open_Parenthesis mid=expr Close_Parenthesis   # parentise
+                            | term                                          # terminal
+                            ;
 
 // All terms ( identifiers and s )
 term                        : NAME

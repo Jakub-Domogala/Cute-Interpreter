@@ -44,8 +44,18 @@ class cutiev2Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by cutiev2Parser#expr.
-    def visitExpr(self, ctx:cutiev2Parser.ExprContext):
+    # Visit a parse tree produced by cutiev2Parser#operat.
+    def visitOperat(self, ctx:cutiev2Parser.OperatContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by cutiev2Parser#parentise.
+    def visitParentise(self, ctx:cutiev2Parser.ParentiseContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by cutiev2Parser#terminal.
+    def visitTerminal(self, ctx:cutiev2Parser.TerminalContext):
         return self.visitChildren(ctx)
 
 

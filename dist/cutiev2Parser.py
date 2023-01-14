@@ -690,16 +690,26 @@ class cutiev2Parser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+
+
+        def getRuleIndex(self):
+            return cutiev2Parser.RULE_expr
+
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+    class OperatContext(ExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a cutiev2Parser.ExprContext
+            super().__init__(parser)
             self.left = None # ExprContext
-            self.mid = None # ExprContext
             self.right = None # ExprContext
+            self.copyFrom(ctx)
 
-        def Open_Parenthesis(self):
-            return self.getToken(cutiev2Parser.Open_Parenthesis, 0)
-
-        def Close_Parenthesis(self):
-            return self.getToken(cutiev2Parser.Close_Parenthesis, 0)
-
+        def Operator_sign(self):
+            return self.getToken(cutiev2Parser.Operator_sign, 0)
         def expr(self, i:int=None):
             if i is None:
                 return self.getTypedRuleContexts(cutiev2Parser.ExprContext)
@@ -707,27 +717,72 @@ class cutiev2Parser ( Parser ):
                 return self.getTypedRuleContext(cutiev2Parser.ExprContext,i)
 
 
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterOperat" ):
+                listener.enterOperat(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitOperat" ):
+                listener.exitOperat(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitOperat" ):
+                return visitor.visitOperat(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class ParentiseContext(ExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a cutiev2Parser.ExprContext
+            super().__init__(parser)
+            self.mid = None # ExprContext
+            self.copyFrom(ctx)
+
+        def Open_Parenthesis(self):
+            return self.getToken(cutiev2Parser.Open_Parenthesis, 0)
+        def Close_Parenthesis(self):
+            return self.getToken(cutiev2Parser.Close_Parenthesis, 0)
+        def expr(self):
+            return self.getTypedRuleContext(cutiev2Parser.ExprContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterParentise" ):
+                listener.enterParentise(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitParentise" ):
+                listener.exitParentise(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParentise" ):
+                return visitor.visitParentise(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class TerminalContext(ExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a cutiev2Parser.ExprContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
         def term(self):
             return self.getTypedRuleContext(cutiev2Parser.TermContext,0)
 
 
-        def Operator_sign(self):
-            return self.getToken(cutiev2Parser.Operator_sign, 0)
-
-        def getRuleIndex(self):
-            return cutiev2Parser.RULE_expr
-
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExpr" ):
-                listener.enterExpr(self)
+            if hasattr( listener, "enterTerminal" ):
+                listener.enterTerminal(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExpr" ):
-                listener.exitExpr(self)
+            if hasattr( listener, "exitTerminal" ):
+                listener.exitTerminal(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr" ):
-                return visitor.visitExpr(self)
+            if hasattr( visitor, "visitTerminal" ):
+                return visitor.visitTerminal(self)
             else:
                 return visitor.visitChildren(self)
 
@@ -746,6 +801,10 @@ class cutiev2Parser ( Parser ):
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [1]:
+                localctx = cutiev2Parser.ParentiseContext(self, localctx)
+                self._ctx = localctx
+                _prevctx = localctx
+
                 self.state = 80
                 self.match(cutiev2Parser.Open_Parenthesis)
                 self.state = 81
@@ -754,6 +813,9 @@ class cutiev2Parser ( Parser ):
                 self.match(cutiev2Parser.Close_Parenthesis)
                 pass
             elif token in [20, 21, 23, 24]:
+                localctx = cutiev2Parser.TerminalContext(self, localctx)
+                self._ctx = localctx
+                _prevctx = localctx
                 self.state = 84
                 self.term()
                 pass
@@ -769,7 +831,7 @@ class cutiev2Parser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    localctx = cutiev2Parser.ExprContext(self, _parentctx, _parentState)
+                    localctx = cutiev2Parser.OperatContext(self, cutiev2Parser.ExprContext(self, _parentctx, _parentState))
                     localctx.left = _prevctx
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
                     self.state = 87

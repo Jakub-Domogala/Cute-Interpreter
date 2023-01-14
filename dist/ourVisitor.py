@@ -8,9 +8,12 @@ from .cutiev2Visitor import cutiev2Visitor
 # This class defines a complete generic visitor for a parse tree produced by cutiev2Parser.
 
 class ourVisitor(cutiev2Visitor):
+    variables = []
 
     # Visit a parse tree produced by cutiev2Parser#block.
     def visitBlock(self, ctx:cutiev2Parser.BlockContext):
+        global variables
+        variables.append({})
         return self.visitChildren(ctx)
 
 
@@ -31,10 +34,7 @@ class ourVisitor(cutiev2Visitor):
 
     # Visit a parse tree produced by cutiev2Parser#print_stat.
     def visitPrint_stat(self, ctx:cutiev2Parser.Print_statContext):
-        result = self.visitChildren(ctx)
-        thing = self.visitChildren(ctx)
-        print(thing, "wydrukowane")
-        return result
+        return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by cutiev2Parser#if_stat.
@@ -44,45 +44,33 @@ class ourVisitor(cutiev2Visitor):
 
     # Visit a parse tree produced by cutiev2Parser#while_stat.
     def visitWhile_stat(self, ctx:cutiev2Parser.While_statContext):
+            
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by cutiev2Parser#expr.
-    def visitExpr(self, ctx:cutiev2Parser.ExprContext):
-        
-        print(ctx.Open_Parenthesis(), "nawiasy", ctx.Operator_sign())
-        # result = self.visitChildren(ctx) 
-        # l = self.visit(ctx.left)
-        # r = self.visitChildren(ctx.right)
-        # print(r, l)
-        # print(result, "aa")
-        print(ctx.mid, "ctxmid")
-        if ctx.Operator_sign() is not None:
-            l = self.visitChildren(ctx.left)
-            r = self.visitChildren(ctx.right)
-            print(l, r)
-            if type(l) is not type(int(1)):
-                print(l)
-                l = l.getText()
-            if type(r) is not type(int(1)):
-                print(r)
-                r = r.getText()
-            print(l,ctx.children[1], r, "aaaaaaaaaa", type(r))
-            l = int(l)
-            r = int(r)
-            # print(type(l.getText))
-            print(l + r)
+    # Visit a parse tree produced by cutiev2Parser#operat.
+    def visitOperat(self, ctx:cutiev2Parser.OperatContext):
+        l = ctx.left.accept(self)
+        r = ctx.right.accept(self)
+        print(l, r)
+        if ctx.Operator_sign().getText() == '+':
             return l + r
-        elif ctx.Open_Parenthesis() is not None:
-            print("open")
-            oldctx = ctx
-            m = self.visitChildren(ctx.mid)
-            print(m, "mid=================")
-            return int(m.getText())
-        print("END")
-        # result = self.visitChildren(ctx)
-        # print(result)
-        # print(self.visitChildren(ctx.mid))
+        if ctx.Operator_sign().getText() == '-':
+            return l - r
+        
+        print("nie przeszlo", ctx.Operator_sign())
+        return l + r
+
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by cutiev2Parser#parentise.
+    def visitParentise(self, ctx:cutiev2Parser.ParentiseContext):
+        return ctx.mid.accept(self)
+
+
+    # Visit a parse tree produced by cutiev2Parser#terminal.
+    def visitTerminal(self, ctx:cutiev2Parser.TerminalContext):
         return self.visitChildren(ctx)
 
 
@@ -90,9 +78,16 @@ class ourVisitor(cutiev2Visitor):
     def visitTerm(self, ctx:cutiev2Parser.TermContext):
         if ctx.Int() is not None:
             print(ctx.Int(), "visitTerm")
-            return ctx.Int()
+            return int(ctx.Int().getText())
 
         return self.visitChildren(ctx)
+
+    def aggregateResult(self, aggregate, nextResult):
+        if aggregate is None:
+            return nextResult
+        return aggregate, nextResult
+
+
 
 
 
