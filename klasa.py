@@ -17,6 +17,15 @@ class klasa(cutiev2Listener):
 
     # Enter a parse tree produced by cutiev2Parser#stat.
     def enterStat(self, ctx:cutiev2Parser.StatContext):
+        # print("-------------------")
+        # print(cutiev2Parser.StatContext.define_stat(ctx))
+        # print(cutiev2Parser.StatContext.assign_stat(ctx))
+        # print(cutiev2Parser.StatContext.print_stat(ctx))
+        # print(cutiev2Parser.StatContext.if_stat(ctx))
+        # print(cutiev2Parser.StatContext.while_stat(ctx))
+        # print(cutiev2Parser.StatContext.getRuleIndex(ctx))
+        # print(cutiev2Parser.Define_statContext.TYPE(ctx))
+        # print("-------------------")
         print("enterStat")
 
     # Exit a parse tree produced by cutiev2Parser#stat.
@@ -26,9 +35,16 @@ class klasa(cutiev2Listener):
 
     # Enter a parse tree produced by cutiev2Parser#define_stat.
     def enterDefine_stat(self, ctx:cutiev2Parser.Define_statContext):
-        print(cutiev2Parser.Define_statContext.Identifier(ctx))
-        print(cutiev2Parser.Define_statContext.type_(ctx))
         print("enterDefine_stat")
+        print('==============')
+        print(cutiev2Parser.Define_statContext.TYPE(ctx))
+        print(cutiev2Parser.Define_statContext.Var_define(ctx))
+        print(cutiev2Parser.Define_statContext.NAME(ctx))
+        print(cutiev2Parser.Define_statContext.Semicolon(ctx))
+        print(cutiev2Parser.Define_statContext.Val_assign(ctx))
+        print(cutiev2Parser.Define_statContext.expr(ctx))
+        print(cutiev2Parser.Define_statContext.getRuleIndex(ctx))
+        print('==============')
 
     # Exit a parse tree produced by cutiev2Parser#define_stat.
     def exitDefine_stat(self, ctx:cutiev2Parser.Define_statContext):
@@ -74,15 +90,29 @@ class klasa(cutiev2Listener):
     # Enter a parse tree produced by cutiev2Parser#expr.
     def enterExpr(self, ctx:cutiev2Parser.ExprContext):
         print("enterExpr")
+        print(cutiev2Parser.ExprContext.Operator_sign(ctx))
 
     # Exit a parse tree produced by cutiev2Parser#expr.
     def exitExpr(self, ctx:cutiev2Parser.ExprContext):
+        # if (cutiev2Parser.ExprContext.Operator_sign(ctx)):
+            # print(ctx.children[0],  cutiev2Parser.ExprContext.Operator_sign(ctx), ctx.children[2])
+        # exlif ( OpenBrackets)
+        #         return result, type
+        # else ()
+        #     return term.value, type
         print("exitExpr")
 
 
     # Enter a parse tree produced by cutiev2Parser#term.
     def enterTerm(self, ctx:cutiev2Parser.TermContext):
         print("enterTerm")
+        print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
+        print(cutiev2Parser.TermContext.NAME(ctx), "NAME")
+        print(cutiev2Parser.TermContext.Int(ctx), "Int")
+        print(cutiev2Parser.TermContext.Double(ctx), "Double")
+        print(cutiev2Parser.TermContext.Bool(ctx), "Bool")
+        print(cutiev2Parser.TermContext.getRuleIndex(ctx), "getRuleIndex")
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
 
     # Exit a parse tree produced by cutiev2Parser#term.
     def exitTerm(self, ctx:cutiev2Parser.TermContext):

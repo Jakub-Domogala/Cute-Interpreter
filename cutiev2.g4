@@ -20,7 +20,7 @@ define_stat                 : TYPE Var_define NAME (Val_assign expr)? Semicolon;
 assign_stat                 : NAME Val_assign expr Semicolon;
 
 // Print variable or sth
-print_stat                  : Print Open_Parenthesis term Close_Parenthesis;
+print_stat                  : Print Open_Parenthesis valorname=term Close_Parenthesis;
 
 // If statement
 if_stat                     : If Open_Parenthesis expr Close_Parenthesis (Open_Bracket (stat)+ Close_Bracket | stat);
@@ -34,8 +34,8 @@ while_stat                  : While Open_Parenthesis expr Close_Parenthesis (Ope
 //                             | (Not)+ expr
 //                             | Open_Parenthesis expr Close_Parenthesis
 //                             | term;
-expr                        : expr Operator_sign expr
-                            | Open_Parenthesis expr Close_Parenthesis
+expr                        : left=expr Operator_sign right=expr
+                            | Open_Parenthesis mid=expr Close_Parenthesis
                             | term;
 
 // All terms ( identifiers and s )

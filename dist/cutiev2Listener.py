@@ -89,14 +89,5 @@ class cutiev2Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by cutiev2Parser#type.
-    def enterType(self, ctx:cutiev2Parser.TypeContext):
-        pass
-
-    # Exit a parse tree produced by cutiev2Parser#type.
-    def exitType(self, ctx:cutiev2Parser.TypeContext):
-        pass
-
-
 
 del cutiev2Parser
