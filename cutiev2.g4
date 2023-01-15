@@ -4,6 +4,8 @@ grammar cutiev2;
  * Parser Rules
  */
 
+program                   : block;
+
 block                     : (stat)+;
 
 // All Statements
@@ -19,10 +21,10 @@ define_stat                 : TYPE Var_define NAME Semicolon                    
                             ;
 
 // Assign value to Variable
-assign_stat                 : NAME Val_assign expr Semicolon;
+assign_stat                 : NAME Val_assign value=expr Semicolon;
 
 // Print variable or sth
-print_stat                  : Print Open_Parenthesis valorname=term Close_Parenthesis;
+print_stat                  : Print Open_Parenthesis valorname=term Close_Parenthesis Semicolon;
 
 // If statement
 if_stat                     : If Open_Parenthesis expr Close_Parenthesis (Open_Bracket (stat)+ Close_Bracket);
@@ -34,6 +36,7 @@ while_stat                  : While Open_Parenthesis expr Close_Parenthesis (Ope
 expr                        : left=expr Operator_sign right=expr            # operat
                             | Open_Parenthesis mid=expr Close_Parenthesis   # parentise
                             | term                                          # terminal
+                            | Operator_sign mid=expr                        # negate
                             ;
 
 // All terms ( identifiers and s )
@@ -92,14 +95,15 @@ fragment Operator_sign_numerical      : Plus
 
 fragment And                : 'oraz';
 fragment Or                 : 'lub';
-fragment Operator_sign_boolean       : And | Or;
+fragment Not                : 'nie';
+
+fragment Operator_sign_boolean       : And | Or | Not;
 
 Operator_sign               : Operator_sign_boolean
                             | Operator_sign_comparison
                             | Operator_sign_equality
                             | Operator_sign_numerical;
 
-Not                         : 'nie';
 
 Var_define                  : '->'; // def
 

@@ -9,6 +9,11 @@ else:
 
 class cutiev2Visitor(ParseTreeVisitor):
 
+    # Visit a parse tree produced by cutiev2Parser#program.
+    def visitProgram(self, ctx:cutiev2Parser.ProgramContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by cutiev2Parser#block.
     def visitBlock(self, ctx:cutiev2Parser.BlockContext):
         return self.visitChildren(ctx)
@@ -51,6 +56,11 @@ class cutiev2Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by cutiev2Parser#operat.
     def visitOperat(self, ctx:cutiev2Parser.OperatContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by cutiev2Parser#negate.
+    def visitNegate(self, ctx:cutiev2Parser.NegateContext):
         return self.visitChildren(ctx)
 
 

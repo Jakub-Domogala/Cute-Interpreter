@@ -8,6 +8,15 @@ else:
 # This class defines a complete listener for a parse tree produced by cutiev2Parser.
 class cutiev2Listener(ParseTreeListener):
 
+    # Enter a parse tree produced by cutiev2Parser#program.
+    def enterProgram(self, ctx:cutiev2Parser.ProgramContext):
+        pass
+
+    # Exit a parse tree produced by cutiev2Parser#program.
+    def exitProgram(self, ctx:cutiev2Parser.ProgramContext):
+        pass
+
+
     # Enter a parse tree produced by cutiev2Parser#block.
     def enterBlock(self, ctx:cutiev2Parser.BlockContext):
         pass
@@ -86,6 +95,15 @@ class cutiev2Listener(ParseTreeListener):
 
     # Exit a parse tree produced by cutiev2Parser#operat.
     def exitOperat(self, ctx:cutiev2Parser.OperatContext):
+        pass
+
+
+    # Enter a parse tree produced by cutiev2Parser#negate.
+    def enterNegate(self, ctx:cutiev2Parser.NegateContext):
+        pass
+
+    # Exit a parse tree produced by cutiev2Parser#negate.
+    def exitNegate(self, ctx:cutiev2Parser.NegateContext):
         pass
 
 

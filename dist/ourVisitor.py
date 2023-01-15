@@ -5,7 +5,24 @@ from .cutiev2Parser import cutiev2Parser
 
 from .cutiev2Visitor import cutiev2Visitor
 
+from random import randint
+
 # This class defines a complete generic visitor for a parse tree produced by cutiev2Parser.
+emotes_happy = ['😀', '😁', '🤣', '😃', '😄', '😅', '😆', '😉', '😊', '😋', '😎', '😍', '😘', '😗']
+emotes_sad = ['😒' ,'🤐', '😠' , '😭', '😒']
+def get_emote_happy():
+    global emotes_happy
+    return emotes_happy[randint(0, len(emotes_happy)-1)]
+
+def get_emote_sad():
+    global emotes_sad
+    return emotes_sad[randint(0, len(emotes_sad)-1)]
+
+def bool_name_to_real(val):
+    return True if val == "prawda" else False
+
+def bool_real_to_name(val):
+    return "prawda" if val is True else "nieprawda"
 
 def get_type(name):
     if name == 'bezprzecinek':
@@ -15,6 +32,17 @@ def get_type(name):
     if name == 'zerojedynek':
         return 'BOOL'
     return "Coś ewidetnie poszło nie tak"
+
+
+def reverse_get_type(name):
+    if name == 'INT':
+        return 'bezprzecinek'
+    if name == 'DOUBLE':
+        return 'zprzecinek'
+    if name == 'BOOL':
+        return 'zerojedynek'
+    return "Coś ewidetnie poszło nie tak"
+
 
 class ourVisitor(cutiev2Visitor):
     def __init__(self) -> None:
@@ -40,15 +68,26 @@ class ourVisitor(cutiev2Visitor):
                 value = 21.37
             elif type == 'BOOL':
                 value = 'prawda'
-        self.variables[-1][name] = (type, value)
+        self.variables[-1][name] = (value, type)
     
     def variable_new_value(self, name, type, value):
         for d in self.variables:
             if name in d:
-                if d[name][0] != type:
+                if d[name][1] != type:
                     return False
-                d[name] = (type, value)
+                d[name] = (value, type)
                 return True
+    
+    def get_variable(self, name):
+        for d in self.variables:
+            if name in d:
+                return d[name]
+        return None, None
+
+    # Visit a parse tree produced by cutiev2Parser#program.
+    def visitProgram(self, ctx:cutiev2Parser.ProgramContext):
+        return self.visitChildren(ctx)
+
 
     # Visit a parse tree produced by cutiev2Parser#block.
     def visitBlock(self, ctx:cutiev2Parser.BlockContext):
@@ -63,7 +102,7 @@ class ourVisitor(cutiev2Visitor):
     # Visit a parse tree produced by cutiev2Parser#defonly.
     def visitDefonly(self, ctx:cutiev2Parser.DefonlyContext):
         self.new_variable(ctx.NAME().getText(), get_type(ctx.TYPE().getText()))
-        print(self.variables)
+        # print(self.variables)
         return self.visitChildren(ctx)
 
     # For DEFINE
@@ -71,20 +110,28 @@ class ourVisitor(cutiev2Visitor):
     def visitDefandasign(self, ctx:cutiev2Parser.DefandasignContext):
         value = ctx.value.accept(self)
         self.new_variable(ctx.NAME().getText(), value[1], value[0])
-        print(self.variables)
+        # print(self.variables)
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by cutiev2Parser#assign_stat.
     def visitAssign_stat(self, ctx:cutiev2Parser.Assign_statContext):
-        return self.visitChildren(ctx)
+        vtype, vval = self.get_variable(ctx.NAME().getText())
+        if vtype is None:
+            raise Exception(f"No szkoda, ale nie mamy zmiennej [{ctx.NAME().getText()}] {get_emote_sad()}")
+        newval = ctx.value.accept(self)
+        self.variable_new_value(ctx.NAME().getText(), newval[1], newval[0])
 
 
     # Visit a parse tree produced by cutiev2Parser#print_stat.
     def visitPrint_stat(self, ctx:cutiev2Parser.Print_statContext):
-        print(ctx.valorname.accept(self)[0])
-        print(self.variables[ctx.valorname.accept(self)[0]])
-        return self.visitChildren(ctx)
+        try:
+            if ctx.valorname.NAME():
+                var = self.get_variable(ctx.valorname.NAME().getText())
+                print(get_emote_happy(), ctx.valorname.NAME().getText(), 'ma wartość', "{:<{width}}".format(var[0], width=10), 'i jest typu', reverse_get_type(var[1]), get_emote_happy())
+                return
+        except:
+            print(get_emote_happy(), ctx.valorname.accept(self)[0], get_emote_happy())
 
 
     # Visit a parse tree produced by cutiev2Parser#if_stat.
@@ -115,7 +162,7 @@ class ourVisitor(cutiev2Visitor):
                 return l[0] * r[0], l[1]
             if ctx.Operator_sign().getText() == '%':
                 return l[0] % r[0], l[1]
-            if ctx.Operator_sign().getText() == '|/|':  # nudny symbol....
+            if ctx.Operator_sign().getText() == '|/|':  
                 return l[0] // r[0], l[1]
             if ctx.Operator_sign().getText() == '|^|':
                 return max(l[0], r[0]), l[1]
@@ -133,9 +180,27 @@ class ourVisitor(cutiev2Visitor):
         if ctx.Operator_sign().getText() == 'innyod':
             return 'prawda' if l[0] != r[0] else 'nieprawda', 'BOOL'
 
-        raise Exception("Nie ma takiej operacji :( ")
+        if l[1] == "BOOL":
+            lv = bool_name_to_real(l[0])
+            rv = bool_name_to_real(r[0])
+            if ctx.Operator_sign().getText() == 'lub':
+                return bool_real_to_name(lv or rv), "BOOL"
+            if ctx.Operator_sign().getText() == 'oraz':
+                return bool_real_to_name(lv and rv), "BOOL"
+
+        raise Exception("Nie ma takiej operacji", get_emote_sad())
 
         # return self.visitChildren(ctx)
+
+    # For EXPRESIONS
+    # Visit a parse tree produced by cutiev2Parser#negate.
+    def visitNegate(self, ctx:cutiev2Parser.NegateContext):
+        vval, vtype = ctx.mid.accept(self)
+        if vtype == "BOOL" and ctx.Operator_sign().getText() == "nie":
+            return ("prawda", "BOOL") if vval == "nieprawda" else ("nieprawda", "BOOL")
+        if ctx.Operator_sign().getText() == "-":
+            return (-vval, vtype)
+        raise Exception(f"Nawet tak nie żartuj, co {ctx.Operator_sign().getText()} {ctx.expr().getText()} ")
 
     # For EXPRESIONS
     # Visit a parse tree produced by cutiev2Parser#parentise.
@@ -147,14 +212,6 @@ class ourVisitor(cutiev2Visitor):
     def visitTerminal(self, ctx:cutiev2Parser.TerminalContext):
         return self.visitChildren(ctx)
 
-
-    # Visit a parse tree produced by cutiev2Parser#term.
-    def visitTerm(self, ctx:cutiev2Parser.TermContext):
-        if ctx.Int() is not None:
-            print(ctx.Int(), "visitTerm")
-            return int(ctx.Int().getText())
-
-        return self.visitChildren(ctx)
 
     # Visit a parse tree produced by cutiev2Parser#TermName.
     def visitTermName(self, ctx:cutiev2Parser.TermNameContext):
