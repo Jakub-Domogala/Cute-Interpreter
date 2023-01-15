@@ -15,7 +15,7 @@ stat                        : define_stat
 
 // Create new Variable statement
 define_stat                 : TYPE Var_define NAME Semicolon                      #defonly
-                            | TYPE Var_define NAME (Val_assign expr)? Semicolon   #defandasign
+                            | TYPE Var_define NAME Val_assign value=expr Semicolon   #defandasign
                             ;
 
 // Assign value to Variable
@@ -66,8 +66,8 @@ fragment Equals             : 'kropkawkropke';
 fragment UnEquals           : 'innyod';
 fragment Operator_sign_equality      : Equals | UnEquals;
 
-fragment Lesser             : 'mniejszy';
-fragment Greater            : 'wiekszy';
+fragment Lesser             : 'mniejszyod';
+fragment Greater            : 'wiekszyod';
 fragment Operator_sign_comparison    : Lesser | Greater | Operator_sign_equality;
 
 fragment Plus               : '+';
@@ -75,9 +75,9 @@ fragment Minus              : '-';
 fragment Multiplication     : '*';
 fragment Division           : '/';
 fragment Modulo             : '%';
-fragment FloorDivision      : '//';
+fragment FloorDivision      : '|/|';
 fragment Max                : '|^|';
-fragment Min              : '|v|';
+fragment Min                : '|v|';
 fragment Power              : '|*|';
 fragment Operator_sign_numerical      : Plus 
                                       | Minus 

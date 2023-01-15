@@ -16,16 +16,13 @@ def get_type(name):
         return 'BOOL'
     return "Coś ewidetnie poszło nie tak"
 
-
 class ourVisitor(cutiev2Visitor):
     def __init__(self) -> None:
         super().__init__()
-        self.variables = []
+        self.variables = [{}]
         # Form of dicts
         # {key-name : (type, value)}
 
-    
-    
     def enterScope(self):
         self.variables.append({})
     
@@ -65,13 +62,16 @@ class ourVisitor(cutiev2Visitor):
     # For DEFINE
     # Visit a parse tree produced by cutiev2Parser#defonly.
     def visitDefonly(self, ctx:cutiev2Parser.DefonlyContext):
-        print(ctx.NAME(), get_type(ctx.TYPE().getText()))
-
+        self.new_variable(ctx.NAME().getText(), get_type(ctx.TYPE().getText()))
+        print(self.variables)
         return self.visitChildren(ctx)
 
     # For DEFINE
     # Visit a parse tree produced by cutiev2Parser#defandasign.
     def visitDefandasign(self, ctx:cutiev2Parser.DefandasignContext):
+        value = ctx.value.accept(self)
+        self.new_variable(ctx.NAME().getText(), value[1], value[0])
+        print(self.variables)
         return self.visitChildren(ctx)
 
 
@@ -82,6 +82,8 @@ class ourVisitor(cutiev2Visitor):
 
     # Visit a parse tree produced by cutiev2Parser#print_stat.
     def visitPrint_stat(self, ctx:cutiev2Parser.Print_statContext):
+        print(ctx.valorname.accept(self)[0])
+        print(self.variables[ctx.valorname.accept(self)[0]])
         return self.visitChildren(ctx)
 
 
@@ -100,17 +102,38 @@ class ourVisitor(cutiev2Visitor):
     def visitOperat(self, ctx:cutiev2Parser.OperatContext):
         l = ctx.left.accept(self)
         r = ctx.right.accept(self)
-        print(l, r)
-        if ctx.Operator_sign().getText() == '+':
-            return l + r
-        if ctx.Operator_sign().getText() == '-':
-            return l - r
-        if ctx.Operator_sign().getText() == '/':
-            return l / r
-        if ctx.Operator_sign().getText() == '*':
-            return l * r
-        print("nie przeszlo", ctx.Operator_sign())
-        return l + r
+        if l[1] != r[1]:
+            raise Exception(f"Złe typy gamoniu... {l} nie ma takiego samego typu jak {r}")
+        if l[1] != "BOOL":
+            if ctx.Operator_sign().getText() == '+':
+                return l[0] + r[0], l[1]
+            if ctx.Operator_sign().getText() == '-':
+                return l[0] - r[0], l[1]
+            if ctx.Operator_sign().getText() == '/':
+                return l[0] / r[0], l[1]
+            if ctx.Operator_sign().getText() == '*':
+                return l[0] * r[0], l[1]
+            if ctx.Operator_sign().getText() == '%':
+                return l[0] % r[0], l[1]
+            if ctx.Operator_sign().getText() == '|/|':  # nudny symbol....
+                return l[0] // r[0], l[1]
+            if ctx.Operator_sign().getText() == '|^|':
+                return max(l[0], r[0]), l[1]
+            if ctx.Operator_sign().getText() == '|v|':
+                return min(l[0], r[0]), l[1]
+            if ctx.Operator_sign().getText() == '|*|':
+                return l[0] ** r[0], l[1]
+            if ctx.Operator_sign().getText() == 'mniejszyod':
+                return 'prawda' if l[0] < r[0] else 'nieprawda', 'BOOL'
+            if ctx.Operator_sign().getText() == 'wiekszyod':
+                return 'prawda' if l[0] > r[0] else 'nieprawda', 'BOOL'
+
+        if ctx.Operator_sign().getText() == 'kropkawkropke':
+            return 'prawda' if l[0] == r[0] else 'nieprawda', 'BOOL'
+        if ctx.Operator_sign().getText() == 'innyod':
+            return 'prawda' if l[0] != r[0] else 'nieprawda', 'BOOL'
+
+        raise Exception("Nie ma takiej operacji :( ")
 
         # return self.visitChildren(ctx)
 
@@ -161,9 +184,6 @@ class ourVisitor(cutiev2Visitor):
         if aggregate is None:
             return nextResult
         return aggregate, nextResult
-
-
-
 
 
 del cutiev2Parser

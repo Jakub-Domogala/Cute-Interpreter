@@ -10,38 +10,37 @@ else:
 
 def serializedATN():
     return [
-        4,1,24,101,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,24,100,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,1,0,4,0,20,8,0,11,0,12,0,21,1,1,1,1,1,1,1,1,1,
-        1,3,1,29,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,40,8,2,1,2,
-        3,2,43,8,2,1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,
-        5,1,5,1,5,4,5,61,8,5,11,5,12,5,62,1,5,1,5,1,6,1,6,1,6,1,6,1,6,1,
-        6,4,6,73,8,6,11,6,12,6,74,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,3,7,85,
-        8,7,1,7,1,7,1,7,5,7,90,8,7,10,7,12,7,93,9,7,1,8,1,8,1,8,1,8,3,8,
-        99,8,8,1,8,0,1,14,9,0,2,4,6,8,10,12,14,16,0,0,105,0,19,1,0,0,0,2,
-        28,1,0,0,0,4,42,1,0,0,0,6,44,1,0,0,0,8,49,1,0,0,0,10,54,1,0,0,0,
-        12,66,1,0,0,0,14,84,1,0,0,0,16,98,1,0,0,0,18,20,3,2,1,0,19,18,1,
-        0,0,0,20,21,1,0,0,0,21,19,1,0,0,0,21,22,1,0,0,0,22,1,1,0,0,0,23,
-        29,3,4,2,0,24,29,3,6,3,0,25,29,3,8,4,0,26,29,3,10,5,0,27,29,3,12,
-        6,0,28,23,1,0,0,0,28,24,1,0,0,0,28,25,1,0,0,0,28,26,1,0,0,0,28,27,
-        1,0,0,0,29,3,1,0,0,0,30,31,5,18,0,0,31,32,5,12,0,0,32,33,5,24,0,
-        0,33,43,5,9,0,0,34,35,5,18,0,0,35,36,5,12,0,0,36,39,5,24,0,0,37,
-        38,5,13,0,0,38,40,3,14,7,0,39,37,1,0,0,0,39,40,1,0,0,0,40,41,1,0,
-        0,0,41,43,5,9,0,0,42,30,1,0,0,0,42,34,1,0,0,0,43,5,1,0,0,0,44,45,
-        5,24,0,0,45,46,5,13,0,0,46,47,3,14,7,0,47,48,5,9,0,0,48,7,1,0,0,
-        0,49,50,5,14,0,0,50,51,5,1,0,0,51,52,3,16,8,0,52,53,5,2,0,0,53,9,
-        1,0,0,0,54,55,5,15,0,0,55,56,5,1,0,0,56,57,3,14,7,0,57,58,5,2,0,
-        0,58,60,5,3,0,0,59,61,3,2,1,0,60,59,1,0,0,0,61,62,1,0,0,0,62,60,
-        1,0,0,0,62,63,1,0,0,0,63,64,1,0,0,0,64,65,5,4,0,0,65,11,1,0,0,0,
-        66,67,5,16,0,0,67,68,5,1,0,0,68,69,3,14,7,0,69,70,5,2,0,0,70,72,
-        5,3,0,0,71,73,3,2,1,0,72,71,1,0,0,0,73,74,1,0,0,0,74,72,1,0,0,0,
-        74,75,1,0,0,0,75,76,1,0,0,0,76,77,5,4,0,0,77,13,1,0,0,0,78,79,6,
-        7,-1,0,79,80,5,1,0,0,80,81,3,14,7,0,81,82,5,2,0,0,82,85,1,0,0,0,
-        83,85,3,16,8,0,84,78,1,0,0,0,84,83,1,0,0,0,85,91,1,0,0,0,86,87,10,
-        3,0,0,87,88,5,10,0,0,88,90,3,14,7,4,89,86,1,0,0,0,90,93,1,0,0,0,
-        91,89,1,0,0,0,91,92,1,0,0,0,92,15,1,0,0,0,93,91,1,0,0,0,94,99,5,
-        24,0,0,95,99,5,20,0,0,96,99,5,21,0,0,97,99,5,23,0,0,98,94,1,0,0,
-        0,98,95,1,0,0,0,98,96,1,0,0,0,98,97,1,0,0,0,99,17,1,0,0,0,9,21,28,
-        39,42,62,74,84,91,98
+        1,3,1,29,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,42,
+        8,2,1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,
+        1,5,4,5,60,8,5,11,5,12,5,61,1,5,1,5,1,6,1,6,1,6,1,6,1,6,1,6,4,6,
+        72,8,6,11,6,12,6,73,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,3,7,84,8,7,1,
+        7,1,7,1,7,5,7,89,8,7,10,7,12,7,92,9,7,1,8,1,8,1,8,1,8,3,8,98,8,8,
+        1,8,0,1,14,9,0,2,4,6,8,10,12,14,16,0,0,103,0,19,1,0,0,0,2,28,1,0,
+        0,0,4,41,1,0,0,0,6,43,1,0,0,0,8,48,1,0,0,0,10,53,1,0,0,0,12,65,1,
+        0,0,0,14,83,1,0,0,0,16,97,1,0,0,0,18,20,3,2,1,0,19,18,1,0,0,0,20,
+        21,1,0,0,0,21,19,1,0,0,0,21,22,1,0,0,0,22,1,1,0,0,0,23,29,3,4,2,
+        0,24,29,3,6,3,0,25,29,3,8,4,0,26,29,3,10,5,0,27,29,3,12,6,0,28,23,
+        1,0,0,0,28,24,1,0,0,0,28,25,1,0,0,0,28,26,1,0,0,0,28,27,1,0,0,0,
+        29,3,1,0,0,0,30,31,5,18,0,0,31,32,5,12,0,0,32,33,5,24,0,0,33,42,
+        5,9,0,0,34,35,5,18,0,0,35,36,5,12,0,0,36,37,5,24,0,0,37,38,5,13,
+        0,0,38,39,3,14,7,0,39,40,5,9,0,0,40,42,1,0,0,0,41,30,1,0,0,0,41,
+        34,1,0,0,0,42,5,1,0,0,0,43,44,5,24,0,0,44,45,5,13,0,0,45,46,3,14,
+        7,0,46,47,5,9,0,0,47,7,1,0,0,0,48,49,5,14,0,0,49,50,5,1,0,0,50,51,
+        3,16,8,0,51,52,5,2,0,0,52,9,1,0,0,0,53,54,5,15,0,0,54,55,5,1,0,0,
+        55,56,3,14,7,0,56,57,5,2,0,0,57,59,5,3,0,0,58,60,3,2,1,0,59,58,1,
+        0,0,0,60,61,1,0,0,0,61,59,1,0,0,0,61,62,1,0,0,0,62,63,1,0,0,0,63,
+        64,5,4,0,0,64,11,1,0,0,0,65,66,5,16,0,0,66,67,5,1,0,0,67,68,3,14,
+        7,0,68,69,5,2,0,0,69,71,5,3,0,0,70,72,3,2,1,0,71,70,1,0,0,0,72,73,
+        1,0,0,0,73,71,1,0,0,0,73,74,1,0,0,0,74,75,1,0,0,0,75,76,5,4,0,0,
+        76,13,1,0,0,0,77,78,6,7,-1,0,78,79,5,1,0,0,79,80,3,14,7,0,80,81,
+        5,2,0,0,81,84,1,0,0,0,82,84,3,16,8,0,83,77,1,0,0,0,83,82,1,0,0,0,
+        84,90,1,0,0,0,85,86,10,3,0,0,86,87,5,10,0,0,87,89,3,14,7,4,88,85,
+        1,0,0,0,89,92,1,0,0,0,90,88,1,0,0,0,90,91,1,0,0,0,91,15,1,0,0,0,
+        92,90,1,0,0,0,93,98,5,24,0,0,94,98,5,20,0,0,95,98,5,21,0,0,96,98,
+        5,23,0,0,97,93,1,0,0,0,97,94,1,0,0,0,97,95,1,0,0,0,97,96,1,0,0,0,
+        98,17,1,0,0,0,8,21,28,41,61,73,83,90,97
     ]
 
 class cutiev2Parser ( Parser ):
@@ -289,6 +288,7 @@ class cutiev2Parser ( Parser ):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a cutiev2Parser.Define_statContext
             super().__init__(parser)
+            self.value = None # ExprContext
             self.copyFrom(ctx)
 
         def TYPE(self):
@@ -297,10 +297,10 @@ class cutiev2Parser ( Parser ):
             return self.getToken(cutiev2Parser.Var_define, 0)
         def NAME(self):
             return self.getToken(cutiev2Parser.NAME, 0)
-        def Semicolon(self):
-            return self.getToken(cutiev2Parser.Semicolon, 0)
         def Val_assign(self):
             return self.getToken(cutiev2Parser.Val_assign, 0)
+        def Semicolon(self):
+            return self.getToken(cutiev2Parser.Semicolon, 0)
         def expr(self):
             return self.getTypedRuleContext(cutiev2Parser.ExprContext,0)
 
@@ -355,11 +355,10 @@ class cutiev2Parser ( Parser ):
 
         localctx = cutiev2Parser.Define_statContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_define_stat)
-        self._la = 0 # Token type
         try:
-            self.state = 42
+            self.state = 41
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
             if la_ == 1:
                 localctx = cutiev2Parser.DefonlyContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
@@ -382,17 +381,11 @@ class cutiev2Parser ( Parser ):
                 self.match(cutiev2Parser.Var_define)
                 self.state = 36
                 self.match(cutiev2Parser.NAME)
+                self.state = 37
+                self.match(cutiev2Parser.Val_assign)
+                self.state = 38
+                localctx.value = self.expr(0)
                 self.state = 39
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if _la==13:
-                    self.state = 37
-                    self.match(cutiev2Parser.Val_assign)
-                    self.state = 38
-                    self.expr(0)
-
-
-                self.state = 41
                 self.match(cutiev2Parser.Semicolon)
                 pass
 
@@ -452,13 +445,13 @@ class cutiev2Parser ( Parser ):
         self.enterRule(localctx, 6, self.RULE_assign_stat)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 44
+            self.state = 43
             self.match(cutiev2Parser.NAME)
-            self.state = 45
+            self.state = 44
             self.match(cutiev2Parser.Val_assign)
-            self.state = 46
+            self.state = 45
             self.expr(0)
-            self.state = 47
+            self.state = 46
             self.match(cutiev2Parser.Semicolon)
         except RecognitionException as re:
             localctx.exception = re
@@ -516,13 +509,13 @@ class cutiev2Parser ( Parser ):
         self.enterRule(localctx, 8, self.RULE_print_stat)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 49
+            self.state = 48
             self.match(cutiev2Parser.Print)
-            self.state = 50
+            self.state = 49
             self.match(cutiev2Parser.Open_Parenthesis)
-            self.state = 51
+            self.state = 50
             localctx.valorname = self.term()
-            self.state = 52
+            self.state = 51
             self.match(cutiev2Parser.Close_Parenthesis)
         except RecognitionException as re:
             localctx.exception = re
@@ -593,30 +586,30 @@ class cutiev2Parser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 54
+            self.state = 53
             self.match(cutiev2Parser.If)
-            self.state = 55
+            self.state = 54
             self.match(cutiev2Parser.Open_Parenthesis)
-            self.state = 56
+            self.state = 55
             self.expr(0)
-            self.state = 57
+            self.state = 56
             self.match(cutiev2Parser.Close_Parenthesis)
 
-            self.state = 58
+            self.state = 57
             self.match(cutiev2Parser.Open_Bracket)
-            self.state = 60 
+            self.state = 59 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 59
+                self.state = 58
                 self.stat()
-                self.state = 62 
+                self.state = 61 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not (((_la) & ~0x3f) == 0 and ((1 << _la) & 17154048) != 0):
                     break
 
-            self.state = 64
+            self.state = 63
             self.match(cutiev2Parser.Close_Bracket)
         except RecognitionException as re:
             localctx.exception = re
@@ -687,30 +680,30 @@ class cutiev2Parser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 66
+            self.state = 65
             self.match(cutiev2Parser.While)
-            self.state = 67
+            self.state = 66
             self.match(cutiev2Parser.Open_Parenthesis)
-            self.state = 68
+            self.state = 67
             self.expr(0)
-            self.state = 69
+            self.state = 68
             self.match(cutiev2Parser.Close_Parenthesis)
 
-            self.state = 70
+            self.state = 69
             self.match(cutiev2Parser.Open_Bracket)
-            self.state = 72 
+            self.state = 71 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 71
+                self.state = 70
                 self.stat()
-                self.state = 74 
+                self.state = 73 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not (((_la) & ~0x3f) == 0 and ((1 << _la) & 17154048) != 0):
                     break
 
-            self.state = 76
+            self.state = 75
             self.match(cutiev2Parser.Close_Bracket)
         except RecognitionException as re:
             localctx.exception = re
@@ -834,7 +827,7 @@ class cutiev2Parser ( Parser ):
         self.enterRecursionRule(localctx, 14, self.RULE_expr, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 84
+            self.state = 83
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [1]:
@@ -842,27 +835,27 @@ class cutiev2Parser ( Parser ):
                 self._ctx = localctx
                 _prevctx = localctx
 
-                self.state = 79
+                self.state = 78
                 self.match(cutiev2Parser.Open_Parenthesis)
-                self.state = 80
+                self.state = 79
                 localctx.mid = self.expr(0)
-                self.state = 81
+                self.state = 80
                 self.match(cutiev2Parser.Close_Parenthesis)
                 pass
             elif token in [20, 21, 23, 24]:
                 localctx = cutiev2Parser.TerminalContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 83
+                self.state = 82
                 self.term()
                 pass
             else:
                 raise NoViableAltException(self)
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 91
+            self.state = 90
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,6,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
@@ -871,17 +864,17 @@ class cutiev2Parser ( Parser ):
                     localctx = cutiev2Parser.OperatContext(self, cutiev2Parser.ExprContext(self, _parentctx, _parentState))
                     localctx.left = _prevctx
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                    self.state = 86
+                    self.state = 85
                     if not self.precpred(self._ctx, 3):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
-                    self.state = 87
+                    self.state = 86
                     self.match(cutiev2Parser.Operator_sign)
-                    self.state = 88
+                    self.state = 87
                     localctx.right = self.expr(4) 
-                self.state = 93
+                self.state = 92
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,6,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1011,31 +1004,31 @@ class cutiev2Parser ( Parser ):
         localctx = cutiev2Parser.TermContext(self, self._ctx, self.state)
         self.enterRule(localctx, 16, self.RULE_term)
         try:
-            self.state = 98
+            self.state = 97
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [24]:
                 localctx = cutiev2Parser.TermNameContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
-                self.state = 94
+                self.state = 93
                 self.match(cutiev2Parser.NAME)
                 pass
             elif token in [20]:
                 localctx = cutiev2Parser.TermIntContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
-                self.state = 95
+                self.state = 94
                 self.match(cutiev2Parser.Int)
                 pass
             elif token in [21]:
                 localctx = cutiev2Parser.TermDoubleContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
-                self.state = 96
+                self.state = 95
                 self.match(cutiev2Parser.Double)
                 pass
             elif token in [23]:
                 localctx = cutiev2Parser.TermBoolContext(self, localctx)
                 self.enterOuterAlt(localctx, 4)
-                self.state = 97
+                self.state = 96
                 self.match(cutiev2Parser.Bool)
                 pass
             else:
