@@ -19,8 +19,13 @@ class cutiev2Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by cutiev2Parser#define_stat.
-    def visitDefine_stat(self, ctx:cutiev2Parser.Define_statContext):
+    # Visit a parse tree produced by cutiev2Parser#defonly.
+    def visitDefonly(self, ctx:cutiev2Parser.DefonlyContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by cutiev2Parser#defandasign.
+    def visitDefandasign(self, ctx:cutiev2Parser.DefandasignContext):
         return self.visitChildren(ctx)
 
 
@@ -59,8 +64,23 @@ class cutiev2Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by cutiev2Parser#term.
-    def visitTerm(self, ctx:cutiev2Parser.TermContext):
+    # Visit a parse tree produced by cutiev2Parser#TermName.
+    def visitTermName(self, ctx:cutiev2Parser.TermNameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by cutiev2Parser#TermInt.
+    def visitTermInt(self, ctx:cutiev2Parser.TermIntContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by cutiev2Parser#TermDouble.
+    def visitTermDouble(self, ctx:cutiev2Parser.TermDoubleContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by cutiev2Parser#TermBool.
+    def visitTermBool(self, ctx:cutiev2Parser.TermBoolContext):
         return self.visitChildren(ctx)
 
 

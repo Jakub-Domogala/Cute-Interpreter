@@ -7,13 +7,54 @@ from .cutiev2Visitor import cutiev2Visitor
 
 # This class defines a complete generic visitor for a parse tree produced by cutiev2Parser.
 
+def get_type(name):
+    if name == 'bezprzecinek':
+        return 'INT'
+    if name == 'zprzecinek':
+        return 'DOUBLE'
+    if name == 'zerojedynek':
+        return 'BOOL'
+    return "Coś ewidetnie poszło nie tak"
+
+
 class ourVisitor(cutiev2Visitor):
-    variables = []
+    def __init__(self) -> None:
+        super().__init__()
+        self.variables = []
+        # Form of dicts
+        # {key-name : (type, value)}
+
+    
+    
+    def enterScope(self):
+        self.variables.append({})
+    
+    def exitScope(self):
+        self.variables.pop()
+
+    def new_variable(self, name, type, value = None):
+        for d in self.variables:
+            if name in d:
+                return False # GO FOR ERROR
+        if value is None:
+            if type == 'INT':
+                value = 69
+            elif type == 'DOUBLE':
+                value = 21.37
+            elif type == 'BOOL':
+                value = 'prawda'
+        self.variables[-1][name] = (type, value)
+    
+    def variable_new_value(self, name, type, value):
+        for d in self.variables:
+            if name in d:
+                if d[name][0] != type:
+                    return False
+                d[name] = (type, value)
+                return True
 
     # Visit a parse tree produced by cutiev2Parser#block.
     def visitBlock(self, ctx:cutiev2Parser.BlockContext):
-        global variables
-        variables.append({})
         return self.visitChildren(ctx)
 
 
@@ -21,9 +62,16 @@ class ourVisitor(cutiev2Visitor):
     def visitStat(self, ctx:cutiev2Parser.StatContext):
         return self.visitChildren(ctx)
 
+    # For DEFINE
+    # Visit a parse tree produced by cutiev2Parser#defonly.
+    def visitDefonly(self, ctx:cutiev2Parser.DefonlyContext):
+        print(ctx.NAME(), get_type(ctx.TYPE().getText()))
 
-    # Visit a parse tree produced by cutiev2Parser#define_stat.
-    def visitDefine_stat(self, ctx:cutiev2Parser.Define_statContext):
+        return self.visitChildren(ctx)
+
+    # For DEFINE
+    # Visit a parse tree produced by cutiev2Parser#defandasign.
+    def visitDefandasign(self, ctx:cutiev2Parser.DefandasignContext):
         return self.visitChildren(ctx)
 
 
@@ -47,7 +95,7 @@ class ourVisitor(cutiev2Visitor):
             
         return self.visitChildren(ctx)
 
-
+    # For EXPRESIONS
     # Visit a parse tree produced by cutiev2Parser#operat.
     def visitOperat(self, ctx:cutiev2Parser.OperatContext):
         l = ctx.left.accept(self)
@@ -57,18 +105,21 @@ class ourVisitor(cutiev2Visitor):
             return l + r
         if ctx.Operator_sign().getText() == '-':
             return l - r
-        
+        if ctx.Operator_sign().getText() == '/':
+            return l / r
+        if ctx.Operator_sign().getText() == '*':
+            return l * r
         print("nie przeszlo", ctx.Operator_sign())
         return l + r
 
-        return self.visitChildren(ctx)
+        # return self.visitChildren(ctx)
 
-
+    # For EXPRESIONS
     # Visit a parse tree produced by cutiev2Parser#parentise.
     def visitParentise(self, ctx:cutiev2Parser.ParentiseContext):
         return ctx.mid.accept(self)
 
-
+    # For EXPRESIONS
     # Visit a parse tree produced by cutiev2Parser#terminal.
     def visitTerminal(self, ctx:cutiev2Parser.TerminalContext):
         return self.visitChildren(ctx)
@@ -81,6 +132,30 @@ class ourVisitor(cutiev2Visitor):
             return int(ctx.Int().getText())
 
         return self.visitChildren(ctx)
+
+    # Visit a parse tree produced by cutiev2Parser#TermName.
+    def visitTermName(self, ctx:cutiev2Parser.TermNameContext):
+        name = ctx.NAME().getText()
+        for d in self.variables:
+            if name in d:
+                return d[name]
+        return None, None
+
+
+    # Visit a parse tree produced by cutiev2Parser#TermInt.
+    def visitTermInt(self, ctx:cutiev2Parser.TermIntContext):
+        return int(ctx.Int().getText()), 'INT'
+
+
+    # Visit a parse tree produced by cutiev2Parser#TermDouble.
+    def visitTermDouble(self, ctx:cutiev2Parser.TermDoubleContext):
+        return float(ctx.Double().getText()), 'DOUBLE'
+
+
+    # Visit a parse tree produced by cutiev2Parser#TermBool.
+    def visitTermBool(self, ctx:cutiev2Parser.TermBoolContext):
+        return ctx.Bool().getText(), 'BOOL'
+
 
     def aggregateResult(self, aggregate, nextResult):
         if aggregate is None:

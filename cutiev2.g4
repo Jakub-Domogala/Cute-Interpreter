@@ -14,7 +14,9 @@ stat                        : define_stat
                             | while_stat;
 
 // Create new Variable statement
-define_stat                 : TYPE Var_define NAME (Val_assign expr)? Semicolon;
+define_stat                 : TYPE Var_define NAME Semicolon                      #defonly
+                            | TYPE Var_define NAME (Val_assign expr)? Semicolon   #defandasign
+                            ;
 
 // Assign value to Variable
 assign_stat                 : NAME Val_assign expr Semicolon;
@@ -23,27 +25,23 @@ assign_stat                 : NAME Val_assign expr Semicolon;
 print_stat                  : Print Open_Parenthesis valorname=term Close_Parenthesis;
 
 // If statement
-if_stat                     : If Open_Parenthesis expr Close_Parenthesis (Open_Bracket (stat)+ Close_Bracket | stat);
+if_stat                     : If Open_Parenthesis expr Close_Parenthesis (Open_Bracket (stat)+ Close_Bracket);
 
 // While statement
-while_stat                  : While Open_Parenthesis expr Close_Parenthesis (Open_Bracket (stat)+ Close_Bracket | stat);
+while_stat                  : While Open_Parenthesis expr Close_Parenthesis (Open_Bracket (stat)+ Close_Bracket);
 
 // All expressions
-// expr                        : expr operator_sign expr
-//                             | (Minus)+ expr
-//                             | (Not)+ expr
-//                             | Open_Parenthesis expr Close_Parenthesis
-//                             | term;
 expr                        : left=expr Operator_sign right=expr            # operat
                             | Open_Parenthesis mid=expr Close_Parenthesis   # parentise
                             | term                                          # terminal
                             ;
 
 // All terms ( identifiers and s )
-term                        : NAME
-                            | Int
-                            | Double
-                            | Bool;
+term                        : NAME      #TermName
+                            | Int       #TermInt
+                            | Double    #TermDouble
+                            | Bool      #TermBool
+                            ;
 
 // atom                        : id | Int | Double | Bool;
 
@@ -73,10 +71,24 @@ fragment Greater            : 'wiekszy';
 fragment Operator_sign_comparison    : Lesser | Greater | Operator_sign_equality;
 
 fragment Plus               : '+';
-fragment Minus                       : '-';
+fragment Minus              : '-';
 fragment Multiplication     : '*';
 fragment Division           : '/';
-fragment Operator_sign_numerical     : Plus | Minus | Multiplication | Division;
+fragment Modulo             : '%';
+fragment FloorDivision      : '//';
+fragment Max                : '|^|';
+fragment Min              : '|v|';
+fragment Power              : '|*|';
+fragment Operator_sign_numerical      : Plus 
+                                      | Minus 
+                                      | Multiplication 
+                                      | Division
+                                      | Modulo
+                                      | FloorDivision
+                                      | Max
+                                      | Min
+                                      | Power
+                                      ;
 
 fragment And                : 'oraz';
 fragment Or                 : 'lub';
@@ -113,9 +125,11 @@ White_Sign                  :
                           )+ -> skip
                             ;
 
-Int                         : ('-')?[0-9][0-9]* ;
+Int                         : (Minus)?[1-9][0-9]+ 
+                            | (Minus)?[0-9];
 
-Double                      : '0';
+Double                      : (Minus)?[1-9][0-9]+Dot[0-9]*
+                            | (Minus)?[0-9]Dot[0-9]*;
 
 Number                      : 
                             Int 
@@ -127,4 +141,4 @@ Bool                        :
                           | 'prawda'
                             ;
 
-NAME                        : [a-zA-Z_-_][a-zA-Z0-9_-_]* ;
+NAME                        : [a-zA-Z][a-zA-Z0-9_-_]* ;

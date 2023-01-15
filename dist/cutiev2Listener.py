@@ -26,12 +26,21 @@ class cutiev2Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by cutiev2Parser#define_stat.
-    def enterDefine_stat(self, ctx:cutiev2Parser.Define_statContext):
+    # Enter a parse tree produced by cutiev2Parser#defonly.
+    def enterDefonly(self, ctx:cutiev2Parser.DefonlyContext):
         pass
 
-    # Exit a parse tree produced by cutiev2Parser#define_stat.
-    def exitDefine_stat(self, ctx:cutiev2Parser.Define_statContext):
+    # Exit a parse tree produced by cutiev2Parser#defonly.
+    def exitDefonly(self, ctx:cutiev2Parser.DefonlyContext):
+        pass
+
+
+    # Enter a parse tree produced by cutiev2Parser#defandasign.
+    def enterDefandasign(self, ctx:cutiev2Parser.DefandasignContext):
+        pass
+
+    # Exit a parse tree produced by cutiev2Parser#defandasign.
+    def exitDefandasign(self, ctx:cutiev2Parser.DefandasignContext):
         pass
 
 
@@ -98,12 +107,39 @@ class cutiev2Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by cutiev2Parser#term.
-    def enterTerm(self, ctx:cutiev2Parser.TermContext):
+    # Enter a parse tree produced by cutiev2Parser#TermName.
+    def enterTermName(self, ctx:cutiev2Parser.TermNameContext):
         pass
 
-    # Exit a parse tree produced by cutiev2Parser#term.
-    def exitTerm(self, ctx:cutiev2Parser.TermContext):
+    # Exit a parse tree produced by cutiev2Parser#TermName.
+    def exitTermName(self, ctx:cutiev2Parser.TermNameContext):
+        pass
+
+
+    # Enter a parse tree produced by cutiev2Parser#TermInt.
+    def enterTermInt(self, ctx:cutiev2Parser.TermIntContext):
+        pass
+
+    # Exit a parse tree produced by cutiev2Parser#TermInt.
+    def exitTermInt(self, ctx:cutiev2Parser.TermIntContext):
+        pass
+
+
+    # Enter a parse tree produced by cutiev2Parser#TermDouble.
+    def enterTermDouble(self, ctx:cutiev2Parser.TermDoubleContext):
+        pass
+
+    # Exit a parse tree produced by cutiev2Parser#TermDouble.
+    def exitTermDouble(self, ctx:cutiev2Parser.TermDoubleContext):
+        pass
+
+
+    # Enter a parse tree produced by cutiev2Parser#TermBool.
+    def enterTermBool(self, ctx:cutiev2Parser.TermBoolContext):
+        pass
+
+    # Exit a parse tree produced by cutiev2Parser#TermBool.
+    def exitTermBool(self, ctx:cutiev2Parser.TermBoolContext):
         pass
 
 
