@@ -115,7 +115,6 @@ class ourVisitor(cutiev2Visitor):
     # Visit a parse tree produced by cutiev2Parser#defonly.
     def visitDefonly(self, ctx: cutiev2Parser.DefonlyContext):
         self.new_variable(ctx.NAME().getText(), get_type(ctx.TYPE().getText()))
-        # print(self.variables)
         return self.visitChildren(ctx)
 
     # For DEFINE
@@ -123,7 +122,6 @@ class ourVisitor(cutiev2Visitor):
     def visitDefandasign(self, ctx: cutiev2Parser.DefandasignContext):
         value = ctx.value.accept(self)
         self.new_variable(ctx.NAME().getText(), value[1], value[0])
-        # print(self.variables)
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by cutiev2Parser#assign_stat.
@@ -170,7 +168,6 @@ class ourVisitor(cutiev2Visitor):
                     and ctx.valorname.accept(self)[0] == "prawda")
                or (ctx.valorname.accept(self)[1] != "BOOL"
                    and ctx.valorname.accept(self)[0] != 0)):
-            # print(ctx.valorname.accept(self))
             ctx.block().accept(self)
         self.exitScope()
         return
@@ -222,7 +219,7 @@ class ourVisitor(cutiev2Visitor):
             if ctx.Operator_sign().getText() == 'oraz':
                 return bool_real_to_name(lv and rv), "BOOL"
 
-        raise Exception("Nie ma takiej operacji", get_emote_sad())
+        raise ("Nie ma takiej operacji", get_emote_sad())
 
     # For EXPRESIONS
     # Visit a parse tree produced by cutiev2Parser#negate.
