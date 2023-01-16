@@ -14,6 +14,7 @@ stat                        : define_stat
                             | print_stat
                             | if_stat
                             | while_stat;
+                            
 
 // Create new Variable statement
 define_stat                 : TYPE Var_define NAME Semicolon                      #defonly
@@ -104,6 +105,11 @@ Operator_sign               : Operator_sign_boolean
                             | Operator_sign_equality
                             | Operator_sign_numerical;
 
+Method_sign                 : 'metodka';
+
+Return                      : 'zwrocik';
+
+
 
 Var_define                  : '->'; // def
 
@@ -114,8 +120,6 @@ Print                       : 'drukareczka';
 If                          : 'waruneczek';
 
 While                       : 'powielanko';
-
-Return                      : 'zwrocik';
 
 TYPE                      : 'bezprzecinek'
                           | 'zerojedynek'
