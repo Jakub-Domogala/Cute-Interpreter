@@ -45,7 +45,7 @@ Możemy wywołać pętle powielanko  z warunkiem logicznym w nawiasie “(  )”
     . . .
     }
 
-### Print
+### Wypisywanie
 Dostępne jest wypisywane wartości  na konsole poprzez słowo drukareczka . Wartość którą chcemy wypisać musi być w nawiasie “(  )”. Jeśli chcemy wypisać wartość  zmiennej wcześniej zadeklarowanej podajemy jej nazwę w nawiasie  w wyniku dostaniemy również informacje o jej typie. 
 
     drukareczka(a1) |<3|
