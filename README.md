@@ -72,4 +72,9 @@ Poniżej znajduje się zaimplementowany algorytm do wypisywania 20 pierwszych wy
        n2 <- n3 |<3|
        count <- count + 1 |<3|
     }
+#### Instrukcja instalacji i użytkowania
+Aby uruchomić interpreter dla zadanego pliku należy pobrać repozytorium z projektem. Następnie w folderze z pobranym projektem uruchamiamy terminal i wpsiujemy komende: 
 
+        python main.py ./nazwaPliku.cute 
+
+Gdzie nazwaPliku to plik z kodem napisanym w języku Cute
