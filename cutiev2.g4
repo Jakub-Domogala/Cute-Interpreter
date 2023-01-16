@@ -27,10 +27,10 @@ assign_stat                 : NAME Val_assign value=expr Semicolon;
 print_stat                  : Print Open_Parenthesis valorname=term Close_Parenthesis Semicolon;
 
 // If statement
-if_stat                     : If Open_Parenthesis expr Close_Parenthesis (Open_Bracket (stat)+ Close_Bracket);
+if_stat                     : If Open_Parenthesis valorname=expr Close_Parenthesis (Open_Bracket block Close_Bracket);
 
 // While statement
-while_stat                  : While Open_Parenthesis expr Close_Parenthesis (Open_Bracket (stat)+ Close_Bracket);
+while_stat                  : While Open_Parenthesis valorname=expr Close_Parenthesis (Open_Bracket block Close_Bracket);
 
 // All expressions
 expr                        : left=expr Operator_sign right=expr            # operat
@@ -146,3 +146,7 @@ Bool                        :
                             ;
 
 NAME                        : [a-zA-Z][a-zA-Z0-9_-_]* ;
+
+COMMENT
+    :   '|<3|' ~[\r\n]* -> skip
+    ;

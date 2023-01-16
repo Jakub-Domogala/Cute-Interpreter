@@ -1,3 +1,6 @@
+|<3| aaa122-=
+
+
 bezprzecinek -> nazwazmiennej <- 5 |^| 1 |^| 10 |<3|
 zerojedynek -> innanazwaZmiennej <- nieprawda |<3|
 bezprzecinek -> kolejnanazwazmiennej |<3|
@@ -6,5 +9,25 @@ drukareczka(nazwazmiennej)|<3|
 drukareczka(7)|<3|
 drukareczka(8)|<3|
 bezprzecinek -> a1 <- 23 |<3|
-a1 <- a1 + 1|<3|
+a1 <- a1 + 10000000000|<3|
 drukareczka(a1)|<3|
+waruneczek(1) {
+    a1 <- 1 |<3|
+    drukareczka(a1) |<3|
+    drukareczka(a1) |<3|
+    drukareczka(a1) |<3|
+}
+waruneczek(prawda) {
+    a1 <- 2 |<3|
+    drukareczka(a1) |<3|
+    drukareczka(a1) |<3|
+    drukareczka(a1) |<3|
+}
+
+powielanko(a1 mniejszyod 10) {
+    a1 <- a1 + 1 |<3|
+    drukareczka(a1) |<3|
+    zerojedynek -> b <- prawda |<3|
+    drukareczka(b) |<3|
+}
+drukareczka(a1) |<3|

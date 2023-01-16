@@ -21,6 +21,7 @@ Double=20
 Number=21
 Bool=22
 NAME=23
+COMMENT=24
 '('=1
 ')'=2
 '{'=3

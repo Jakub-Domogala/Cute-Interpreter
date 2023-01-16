@@ -131,17 +131,39 @@ class ourVisitor(cutiev2Visitor):
                 print(get_emote_happy(), ctx.valorname.NAME().getText(), 'ma wartość', "{:<{width}}".format(var[0], width=10), 'i jest typu', reverse_get_type(var[1]), get_emote_happy())
                 return
         except:
+            if ctx.valorname.accept(self)[0] is None:
+                raise Exception(f"No szkoda, ale nie mamy zmiennej [{ctx.valorname.NAME().getText()}] {get_emote_sad()}")
             print(get_emote_happy(), ctx.valorname.accept(self)[0], get_emote_happy())
 
 
     # Visit a parse tree produced by cutiev2Parser#if_stat.
     def visitIf_stat(self, ctx:cutiev2Parser.If_statContext):
-        return self.visitChildren(ctx)
+        var = ctx.valorname.accept(self)
+        print(var)
+        if var[0] is None:
+            return
+        if var[1] != "BOOL":
+            if var[0] != 0:
+                ctx.block().accept(self)
+                return 
+        if var[0] == "prawda":
+                return ctx.block().accept(self)
+        return None
+        
 
 
     # Visit a parse tree produced by cutiev2Parser#while_stat.
     def visitWhile_stat(self, ctx:cutiev2Parser.While_statContext):
-            
+        self.enterScope()
+        while ( ctx.valorname.accept(self)[0] is not None 
+                and (ctx.valorname.accept(self)[1] == "BOOL" 
+                    and ctx.valorname.accept(self)[0] == "prawda")
+                or  (ctx.valorname.accept(self)[1] != "BOOL"
+                    and ctx.valorname.accept(self)[0] != 0)):
+            # print(ctx.valorname.accept(self))
+            ctx.block().accept(self)
+        self.exitScope()
+        return 
         return self.visitChildren(ctx)
 
     # For EXPRESIONS
