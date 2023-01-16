@@ -4,9 +4,9 @@ grammar cutiev2;
  * Parser Rules
  */
 
-program                   : block;
+program                     : block;
 
-block                     : (stat)+;
+block                       : (stat)+;
 
 // All Statements
 stat                        : define_stat
@@ -14,10 +14,9 @@ stat                        : define_stat
                             | print_stat
                             | if_stat
                             | while_stat;
-                            
 
 // Create new Variable statement
-define_stat                 : TYPE Var_define NAME Semicolon                      #defonly
+define_stat                 : TYPE Var_define NAME Semicolon                         #defonly
                             | TYPE Var_define NAME Val_assign value=expr Semicolon   #defandasign
                             ;
 
@@ -46,8 +45,6 @@ term                        : NAME      #TermName
                             | Double    #TermDouble
                             | Bool      #TermBool
                             ;
-
-// atom                        : id | Int | Double | Bool;
 
 /*
  * Lexer Rules
@@ -83,6 +80,7 @@ fragment FloorDivision      : '|/|';
 fragment Max                : '|^|';
 fragment Min                : '|v|';
 fragment Power              : '|*|';
+
 fragment Operator_sign_numerical      : Plus 
                                       | Minus 
                                       | Multiplication 
@@ -109,8 +107,6 @@ Method_sign                 : 'metodka';
 
 Return                      : 'zwrocik';
 
-
-
 Var_define                  : '->'; // def
 
 Val_assign                  : '<-'; // asignVal
@@ -121,16 +117,16 @@ If                          : 'waruneczek';
 
 While                       : 'powielanko';
 
-TYPE                      : 'bezprzecinek'
-                          | 'zerojedynek'
-                          | 'napisik'
-                          | 'zprzecinek';
-White_Sign                  : 
-                          ( ' ' 
-                          | '\n' 
-                          | '\r' 
-                          | '\t'
-                          )+ -> skip
+TYPE                        : 'bezprzecinek'
+                            | 'zerojedynek'
+                            | 'napisik'
+                            | 'zprzecinek';
+
+White_Sign                  : ( ' '
+                            | '\n'
+                            | '\r'
+                            | '\t'
+                            )+ -> skip
                             ;
 
 Int                         : (Minus)?[1-9][0-9]+ 
@@ -139,18 +135,15 @@ Int                         : (Minus)?[1-9][0-9]+
 Double                      : (Minus)?[1-9][0-9]+Dot[0-9]*
                             | (Minus)?[0-9]Dot[0-9]*;
 
-Number                      : 
-                            Int 
-                          | Double
+Number                      : Int
+                            | Double
                             ;
 
-Bool                        : 
-                            'nieprawda'
-                          | 'prawda'
+Bool                        : 'nieprawda'
+                            | 'prawda'
                             ;
 
 NAME                        : [a-zA-Z][a-zA-Z0-9_-_]* ;
 
 COMMENT
-    :   '|<3|' ~[\r\n]* -> skip
-    ;
+                            : '|<3|' ~[\r\n]* -> skip ;
