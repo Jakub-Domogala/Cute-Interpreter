@@ -1,8 +1,7 @@
 |<3| rozszerzenie .cute
 |<3| to jest komentarz
 
-
-bezprzecinek -> amount_to_print <- 10|<3|
+bezprzecinek -> amount_to_print <- 20|<3|
 bezprzecinek -> count <- 0 |<3|
 bezprzecinek -> n1 <- 0 |<3|
 bezprzecinek -> n2 <- 1 |<3|
