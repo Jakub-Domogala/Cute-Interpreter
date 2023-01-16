@@ -1,0 +1,23 @@
+bezprzecinek -> a <- 5|<3|
+bezprzecinek -> b <- 20 |<3|
+
+bezprzecinek -> wynik <- a |v| b |<3|
+drukareczka(wynik) |<3|
+
+wynik <- a |^| b |<3|
+drukareczka(wynik) |<3|
+
+wynik <- a % b |<3|
+drukareczka(wynik) |<3|
+
+wynik <- b |/| a |<3|
+drukareczka(wynik) |<3|
+
+wynik <- b |*| a |<3|
+drukareczka(wynik) |<3|
+
+zerojedynek -> val <- b kropkawkropke a |<3|
+drukareczka(val) |<3|
+
+val <- b innyod a |<3|
+drukareczka(val) |<3|

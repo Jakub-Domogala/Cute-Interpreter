@@ -1,0 +1,10 @@
+bezprzecinek -> current_level <- 0 |<3|
+bezprzecinek -> final_level <- 11 |<3|
+zerojedynek -> game_completed <- prawda |<3|
+
+powielanko(current_level mniejszyod final_level) {
+	waruneczek((current_level % 2 ) kropkawkropke 0) {
+        drukareczka(current_level) |<3|
+    }
+    current_level <- current_level + 1 |<3|
+}

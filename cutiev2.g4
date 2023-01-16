@@ -65,11 +65,11 @@ Semicolon                   : '|<3|';
 
 fragment Equals             : 'kropkawkropke';
 fragment UnEquals           : 'innyod';
-fragment Operator_sign_equality      : Equals | UnEquals;
+fragment Operator_sign_equality        : Equals | UnEquals;
 
 fragment Lesser             : 'mniejszyod';
 fragment Greater            : 'wiekszyod';
-fragment Operator_sign_comparison    : Lesser | Greater | Operator_sign_equality;
+fragment Operator_sign_comparison      : Lesser | Greater | Operator_sign_equality;
 
 fragment Plus               : '+';
 fragment Minus              : '-';
@@ -96,7 +96,7 @@ fragment And                : 'oraz';
 fragment Or                 : 'lub';
 fragment Not                : 'nie';
 
-fragment Operator_sign_boolean       : And | Or | Not;
+fragment Operator_sign_boolean        : And | Or | Not;
 
 Operator_sign               : Operator_sign_boolean
                             | Operator_sign_comparison

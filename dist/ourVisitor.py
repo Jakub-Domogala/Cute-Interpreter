@@ -152,7 +152,6 @@ class ourVisitor(cutiev2Visitor):
     # Visit a parse tree produced by cutiev2Parser#if_stat.
     def visitIf_stat(self, ctx: cutiev2Parser.If_statContext):
         var = ctx.valorname.accept(self)
-        print(var)
         if var[0] is None:
             return
         if var[1] != "BOOL":
